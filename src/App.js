@@ -1,24 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIndex, deselectIndex } from './store/actions';
+import Entry from './Entry';
+import Status from './Status';
+import FileHandler from './FileHandler';
 
 function App() {
+  const currentPal = useSelector(state => state.currentPal);
+  const selectedIndices = useSelector(state => state.selectedIndices);
+  const dispatch = useDispatch();
+
+  const handleEntrySelect = index => {
+    if (selectedIndices.has(index)) {
+      dispatch(deselectIndex(index));
+    } else {
+      dispatch(selectIndex(index));
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div>
+        <FileHandler />
+
+        <div className='palette'>
+          {currentPal.map((palEntry, index) => (
+            <Entry
+              color={palEntry}
+              key={index}
+              index={index}
+              isActive={selectedIndices.has(index)}
+              handleClick={handleEntrySelect}
+            />
+          ))}
+        </div>
+
+        <Status />
+      </div>
     </div>
   );
 }
