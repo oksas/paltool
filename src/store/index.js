@@ -1,13 +1,63 @@
 import { createStore, applyMiddleware } from 'redux';
-import { SET_CURRENT_PAL, SELECT_INDEX, DESELECT_INDEX } from './actions';
+import {
+  UNDO,
+  REDO,
+  SET_CURRENT_PAL,
+  SELECT_INDEX,
+  DESELECT_INDEX,
+  UPDATE_INDEX } from './actions';
 import logger from 'redux-logger';
+
+// Can we create a wrapper around Redux.useSelector and automatically return
+// present state, to save having to always append `.present` ourselves?
+const undoReducer = (reducer) => {
+  const initialState = {
+    past: [],
+    present: reducer(undefined, {}),
+    future: []
+  };
+
+  return function enhancedReducer(state = initialState, action) {
+    switch (action.type) {
+      case UNDO: {
+        if (!state.past.length) {
+          return state;
+        }
+
+        return {
+          past: state.past.slice(0, state.past.length - 1),
+          present: state.past[state.past.length - 1],
+          future: state.future.unshift(state.present)
+        };
+      }
+      case REDO: {
+        if (!state.future.length) {
+          return state;
+        }
+        
+        return {
+          past: [...state.past, state.present],
+          present: state.future[0],
+          future: state.future.slice(1)
+        };
+      }
+      default: {
+        return {
+          past: [...state.past, state.present],
+          present: reducer(state, action),
+          future: []
+        };
+      }
+    }
+  }
+};
 
 const initialState = {
   currentPal: [],
   selectedIndices: new Set([])
 };
 
-function rootReducer(state = initialState, action) {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_PAL: {
       return {
@@ -16,25 +66,35 @@ function rootReducer(state = initialState, action) {
       };
     }
     case SELECT_INDEX: {
+      const { index } = action.payload;
+
       let newSelected = new Set(state.selectedIndices);
-      newSelected.add(action.payload.index);
+      newSelected.add(index);
       return {
         ...state,
         selectedIndices: newSelected
       };
     }
     case DESELECT_INDEX: {
+      const { index } = action.payload;
+
       let newSelected = new Set(state.selectedIndices);
-      newSelected.delete(action.payload.index);
+      newSelected.delete(index);
       return {
         ...state,
         selectedIndices: newSelected
       };
     }
+    case UPDATE_INDEX: {
+      const { index, color } = action.payload;
+
+      let newPal = [...currentPal];
+      newPal[index] = color;
+    }
     default: {
       return state;
     }
   }
-}
+};
 
 export default createStore(rootReducer, applyMiddleware(logger));
