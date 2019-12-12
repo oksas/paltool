@@ -1,13 +1,15 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { selectIndex, deselectIndex } from './store/actions';
+import { usePresentSelector } from './store/util';
 import Entry from './Entry';
 import Status from './Status';
 import FileHandler from './FileHandler';
+import DragSelect from './components/DragSelect';
 
 function App() {
-  const currentPal = useSelector(state => state.currentPal);
-  const selectedIndices = useSelector(state => state.selectedIndices);
+  const currentPal = usePresentSelector(state => state.currentPal);
+  const selectedIndices = usePresentSelector(state => state.selectedIndices);
   const dispatch = useDispatch();
 
   const handleEntrySelect = index => {
@@ -19,20 +21,22 @@ function App() {
   };
 
   return (
-    <div className='app'>
+    <div className="app">
       <div>
         <FileHandler />
 
-        <div className='palette'>
-          {currentPal.map((palEntry, index) => (
-            <Entry
-              color={palEntry}
-              key={index}
-              index={index}
-              isActive={selectedIndices.has(index)}
-              handleClick={handleEntrySelect}
-            />
-          ))}
+        <div className="palette">
+          <DragSelect>
+            {currentPal.map((palEntry, index) => (
+              <Entry
+                color={palEntry}
+                key={index}
+                index={index}
+                isActive={selectedIndices.has(index)}
+                handleClick={handleEntrySelect}
+              />
+            ))}
+          </DragSelect>
         </div>
 
         <Status />

@@ -5,12 +5,12 @@ import {
   SET_CURRENT_PAL,
   SELECT_INDEX,
   DESELECT_INDEX,
-  UPDATE_INDEX } from './actions';
+  DESELECT_ALL_INDICES,
+  UPDATE_INDEX
+} from './actions';
 import logger from 'redux-logger';
 
-// Can we create a wrapper around Redux.useSelector and automatically return
-// present state, to save having to always append `.present` ourselves?
-const undoReducer = (reducer) => {
+const undoReducer = reducer => {
   const initialState = {
     past: [],
     present: reducer(undefined, {}),
@@ -34,7 +34,7 @@ const undoReducer = (reducer) => {
         if (!state.future.length) {
           return state;
         }
-        
+
         return {
           past: [...state.past, state.present],
           present: state.future[0],
@@ -44,12 +44,12 @@ const undoReducer = (reducer) => {
       default: {
         return {
           past: [...state.past, state.present],
-          present: reducer(state, action),
+          present: reducer(state.present, action),
           future: []
         };
       }
     }
-  }
+  };
 };
 
 const initialState = {
@@ -85,11 +85,21 @@ const rootReducer = (state = initialState, action) => {
         selectedIndices: newSelected
       };
     }
+    case DESELECT_ALL_INDICES: {
+      return {
+        ...state,
+        selectedIndices: new Set([])
+      };
+    }
     case UPDATE_INDEX: {
       const { index, color } = action.payload;
 
-      let newPal = [...currentPal];
+      let newPal = [...state.currentPal];
       newPal[index] = color;
+      return {
+        ...state,
+        currentPal: newPal
+      };
     }
     default: {
       return state;
@@ -97,4 +107,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default createStore(rootReducer, applyMiddleware(logger));
+export default createStore(undoReducer(rootReducer), applyMiddleware(logger));

@@ -6,6 +6,7 @@ export const SET_CURRENT_PAL = 'SET_CURRENT_PAL';
 export const SELECT_INDEX = 'SELECT_INDEX';
 export const DESELECT_INDEX = 'DESELECT_INDEX';
 export const UPDATE_INDEX = 'UPDATE_INDEX';
+export const DESELECT_ALL_INDICES = 'DESELECT_ALL_INDICES';
 
 // ** ACTIONS
 export const undo = () => ({
@@ -35,6 +36,10 @@ export const deselectIndex = index => ({
   payload: {
     index
   }
+});
+
+export const deselectAllIndices = () => ({
+  type: DESELECT_ALL_INDICES
 });
 
 export const updateIndex = (index, color) => ({
