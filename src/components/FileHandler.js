@@ -1,6 +1,7 @@
 import React from 'react';
+import Palette from '../Palette';
 import { useDispatch } from 'react-redux';
-import { setCurrentPal } from './store/actions';
+import { setCurrentPal } from '../store/actions';
 
 function parsePal(palArray) {
   let result = [];
@@ -24,6 +25,7 @@ const FileHandler = () => {
 
     reader.onload = () => {
       const palArray = new Uint8Array(reader.result);
+      console.log('done with everything?', palArray.length);
       dispatch(setCurrentPal(parsePal(palArray)));
     };
 
@@ -33,8 +35,8 @@ const FileHandler = () => {
   };
 
   return (
-    <div className='file-handler'>
-      <input type='file' onChange={handleFileUpload} />
+    <div className="file-handler">
+      <input type="file" onChange={handleFileUpload} />
     </div>
   );
 };

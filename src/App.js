@@ -2,9 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { selectIndex, deselectIndex } from './store/actions';
 import { usePresentSelector } from './store/util';
-import Entry from './Entry';
-import Status from './Status';
-import FileHandler from './FileHandler';
+import Top from './components/Top';
+import Entry from './components/Entry';
+import Status from './components/Status';
+import FileHandler from './components/FileHandler';
 import DragSelect from './components/DragSelect';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className="app">
+      <Top />
       <div>
         <FileHandler />
 

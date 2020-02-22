@@ -1,6 +1,10 @@
+import { PARENT_MESSAGE_SETUP_ERROR } from 'jest-worker/build/types';
+
 // ** ACTION TYPES
 export const UNDO = 'UNDO';
 export const REDO = 'REDO';
+
+export const SET_ERROR = 'SET_ERROR';
 
 export const SET_CURRENT_PAL = 'SET_CURRENT_PAL';
 export const SELECT_INDEX = 'SELECT_INDEX';
@@ -47,5 +51,12 @@ export const updateIndex = (index, color) => ({
   payload: {
     index,
     color
+  }
+});
+
+export const setError = err => ({
+  type: PARENT_MESSAGE_SETUP_ERROR,
+  payload: {
+    err
   }
 });

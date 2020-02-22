@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import {
   UNDO,
   REDO,
+  SET_ERROR,
   SET_CURRENT_PAL,
   SELECT_INDEX,
   DESELECT_INDEX,
@@ -54,11 +55,18 @@ const undoReducer = reducer => {
 
 const initialState = {
   currentPal: [],
-  selectedIndices: new Set([])
+  selectedIndices: new Set([]),
+  error: null
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ERROR: {
+      return {
+        ...state,
+        error: action.payload.err
+      };
+    }
     case SET_CURRENT_PAL: {
       return {
         ...state,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePresentSelector } from './store/util';
+import { usePresentSelector } from '../store/util';
 
 const Status = () => {
   const selectedIndices = usePresentSelector(state => state.selectedIndices);
