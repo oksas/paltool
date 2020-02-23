@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "paltool",
+  "name": "paltool - Palette manipulator for idtech1 games",
   "icons": [
     {
       "src": "favicon.ico",
