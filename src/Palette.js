@@ -24,7 +24,7 @@ class Palette {
     }
 
     // If we made it this far, then this is a valid palette
-    this.palette = typedArr;
+    this.rawPalette = typedArr;
 
     return this;
   }
