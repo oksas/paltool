@@ -11,14 +11,14 @@ class Palette {
   parseFromTypedArray(typedArr) {
     // Check for invalid palette sizes
     if (typedArr.length !== 768) {
-      throw new Error('unknown format: not a valid 768-byte length palette');
+      throw new Error('Unknown format: not a valid 768-byte length palette');
     }
 
     // Check for any palette RGB value being out of bounds [0, 255] inclusive
     for (let i = 0; i < typedArr.length; i++) {
       if (typedArr[i] > 255 || typedArr[i] < 0) {
         throw new Error(
-          `unknown format: palette index ${i} with value ${typedArr[i]} is out of bounds [0, 255]`
+          `Unknown format: palette index ${i} with value ${typedArr[i]} is out of bounds [0, 255]`
         );
       }
     }
@@ -35,7 +35,7 @@ class Palette {
     let newRawPal = new Uint8Array(768);
     if (palRGB.length > 256) {
       throw new Error(
-        `unknown format: RGB palette with size ${palRGB.length} is greater than max length of 256`
+        `Unknown format: RGB palette with size ${palRGB.length} is greater than max length of 256`
       );
     }
 
@@ -44,15 +44,15 @@ class Palette {
       let baseIndex = i * 3;
       if (r > 255 || r < 0)
         throw new Error(
-          `unknown format: RGB palette entry at index ${i} with r value ${r} is out of bounds [0, 255]`
+          `Unknown format: RGB palette entry at index ${i} with r value ${r} is out of bounds [0, 255]`
         );
       if (g > 255 || g < 0)
         throw new Error(
-          `unknown format: RGB palette entry at index ${i} with g value ${g} is out of bounds [0, 255]`
+          `Unknown format: RGB palette entry at index ${i} with g value ${g} is out of bounds [0, 255]`
         );
       if (b > 255 || b < 0)
         throw new Error(
-          `unknown format: RGB palette entry at index ${i} with b value ${b} is out of bounds [0, 255]`
+          `Unknown format: RGB palette entry at index ${i} with b value ${b} is out of bounds [0, 255]`
         );
       newRawPal[baseIndex] = r;
       newRawPal[baseIndex + 1] = g;

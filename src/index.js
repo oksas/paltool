@@ -12,7 +12,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ToastProvider>
+    <ToastProvider
+      autoDismiss
+      autoDismissTimeout={1000 * 8}
+      placement="bottom-center"
+    >
       <App />
     </ToastProvider>
   </Provider>,

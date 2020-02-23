@@ -130,6 +130,21 @@ code {
 }
 
 // ================
+// TOAST ELEMENT OVERRIDES
+// ================
+.react-toast-notifications__toast--warning {
+  color: #ffffff !important;
+  background-color: #313131 !important;
+}
+
+.react-toast-notifications__toast__icon-wrapper {
+  background-color: rgb(255, 44, 0) !important;
+}
+
+.react-toast-notifications__toast__countdown {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+}
+// ================
 // PALETTE DISPLAY
 // ================
 .palette-display {
