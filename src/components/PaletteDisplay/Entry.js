@@ -1,13 +1,20 @@
 import React from 'react';
 
-const Entry = ({ color, handleClick, index, isActive }) => {
+const Entry = ({
+  color,
+  index,
+  isActive,
+  handleMouseDown = () => {},
+  handleMouseUp = () => {},
+  handleMouseEnter = () => {}
+}) => {
   return (
     <div
       className={`entry ${isActive ? 'is-active' : ''}`}
       style={{ background: `rgb(${color.r}, ${color.g}, ${color.b})` }}
-      onClick={() => handleClick(index)}
-      onMouseDown={e => console.log('mouse down', index, e)}
-      onMouseUp={e => console.log('mouse up', index, e)}
+      onMouseDown={() => handleMouseDown(index)}
+      onMouseUp={() => handleMouseUp(index)}
+      onMouseEnter={() => handleMouseEnter(index)}
     ></div>
   );
 };

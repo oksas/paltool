@@ -26,6 +26,7 @@ function App() {
         <ToolBar />
 
         <AnimateInOut
+          className="palette-display-container"
           shouldShow={palette && palette.length ? true : false}
           inClass="fade-in-up"
           outClass="fade-out-down"

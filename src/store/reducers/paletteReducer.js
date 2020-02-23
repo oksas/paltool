@@ -1,6 +1,9 @@
 import { SET_PALETTE, UPDATE_INDEX } from '../actions';
+import doomPalette from '../../default-palettes/doomPal';
 
-const initialState = {};
+const initialState = {
+  palette: doomPalette
+};
 
 const paletteReducer = (state = initialState, action) => {
   switch (action.type) {

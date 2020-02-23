@@ -10,6 +10,12 @@ const MODES = {
   SINGLE: 'SINGLE'
 };
 
+// PALETTE SHOULD HAVE:
+// handleMouseLeave
+// handleEntryMouseDown
+// handleEntryMouseUp
+// handleEntryMouseEnter
+
 const initialState = {
   mode: MODES.SINGLE,
   selectedIndices: new Set([])

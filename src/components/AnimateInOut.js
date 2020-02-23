@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function AnimateInOut({ shouldShow, children, inClass, outClass }) {
+function AnimateInOut({ shouldShow, children, inClass, outClass, className }) {
   const [shouldRender, setShouldRender] = useState(shouldShow);
 
   // This effect will run on every render when shouldShow has changed,
@@ -13,12 +13,12 @@ function AnimateInOut({ shouldShow, children, inClass, outClass }) {
     if (!shouldShow) setShouldRender(false);
   }
 
+  const baseClassName = shouldShow ? inClass : outClass;
+  const combinedClassNames = baseClassName + ' ' + className;
+
   return (
     shouldRender && (
-      <div
-        className={shouldShow ? inClass : outClass}
-        onAnimationEnd={handleAnimationEnd}
-      >
+      <div className={combinedClassNames} onAnimationEnd={handleAnimationEnd}>
         {children}
       </div>
     )

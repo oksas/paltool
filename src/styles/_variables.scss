@@ -1,0 +1,35 @@
+$breakpoints: (
+  small: 360px,
+  medium: 768px,
+  large: 1024px
+);
+
+$top-logo-width-s: 135px;
+$top-logo-height-s: 43.875px;
+$top-logo-width-m: 180px;
+$top-logo-height-m: 58.5px;
+
+$text-color: #111111;
+$text-color-light: #555555;
+$text-color-disabled: #999999;
+$font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  'Helvetica Neue', sans-serif;
+
+$palette-size-s: 300px;
+$palette-size-m: 340px;
+$palette-size-l: 512px;
+
+$tool-bar-button-bg-hover: rgba(146, 247, 247, 0.25);
+$tool-bar-button-bg-active: rgba(146, 247, 247, 0.5);
+$tool-bar-button-size-s: 54px;
+$tool-bar-button-text-size-s: 11px;
+$tool-bar-button-icon-size-s: 16px;
+
+$tool-bar-button-size-m: 64px;
+$tool-bar-button-text-size-m: 12px;
+$tool-bar-button-icon-size-m: 16px;
+
+$tool-bar-button-size-l: 80px;
+$tool-bar-button-text-size-l: 16px;
+$tool-bar-button-icon-size-l: 24px;

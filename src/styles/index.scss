@@ -1,5 +1,6 @@
 @import 'normalize';
 @import 'variables';
+@import 'include-media';
 
 body {
   margin: 0;
@@ -47,25 +48,39 @@ code {
   padding: 4rem; */
 }
 
+// ================
+// TOP
+// ================
 .top {
-  padding: 1rem 2rem;
-  margin-bottom: 2rem;
+  padding: 0.5rem 0.5rem;
   // border: 1px dashed royalblue;
+}
 
-  // header styles, to be replaced later with an SVG
-  letter-spacing: 2px;
-  font-size: 22px;
-  font-weight: 600;
+.top-logo {
+  width: $top-logo-width-s;
+  height: $top-logo-height-s;
+}
+
+@include media('>small') {
+  .top {
+    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+  }
+  .top-logo {
+    width: $top-logo-width-m;
+    height: $top-logo-height-m;
+  }
 }
 
 .content {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  //border: 2px dashed blueviolet;
   width: 52rem;
   max-width: 98%;
   margin: 0 auto;
+  // border: 2px dashed red;
 }
 
 // ================
@@ -75,21 +90,34 @@ code {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: $palette-size;
+  width: 100%;
   max-width: 100%;
+}
+
+@include media('>small') {
+  .tool-bar {
+    width: $palette-size-m;
+  }
+}
+
+@include media('>medium') {
+  .tool-bar {
+    width: $palette-size-l;
+  }
 }
 
 .tool-bar-button {
   border-radius: 50%;
   transition: background 0.2s ease;
-  width: $tool-bar-button-size;
-  height: $tool-bar-button-size;
+  width: $tool-bar-button-size-s;
+  height: $tool-bar-button-size-s;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   color: $text-color-light;
   background: #ffffff;
+  font-size: $tool-bar-button-text-size-s;
 
   &:hover,
   &:focus {
@@ -124,9 +152,31 @@ code {
 }
 
 .tool-bar-button-icon {
-  font-size: $tool-bar-button-icon-size;
+  font-size: $tool-bar-button-icon-size-s;
   margin-bottom: 8px;
   stroke: $text-color-light;
+}
+
+@include media('>small') {
+  .tool-bar-button {
+    width: $tool-bar-button-size-m;
+    height: $tool-bar-button-size-m;
+    font-size: $tool-bar-button-text-size-m;
+  }
+  .tool-bar-button-icon {
+    font-size: $tool-bar-button-icon-size-m;
+  }
+}
+
+@include media('>medium') {
+  .tool-bar-button {
+    width: $tool-bar-button-size-l;
+    height: $tool-bar-button-size-l;
+    font-size: $tool-bar-button-text-size-l;
+  }
+  .tool-bar-button-icon {
+    font-size: $tool-bar-button-icon-size-l;
+  }
 }
 
 // ================
@@ -147,8 +197,15 @@ code {
 // ================
 // PALETTE DISPLAY
 // ================
+.palette-display-container {
+  width: 100%;
+}
+
 .palette-display {
   margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .palette-display-top {
@@ -158,8 +215,23 @@ code {
 .palette-display-inner {
   display: flex;
   flex-flow: row wrap;
-  width: $palette-size;
-  height: $palette-size;
+  width: $palette-size-s;
+  height: $palette-size-s;
+  // width: 100%;
+}
+
+@include media('>small') {
+  .palette-display-inner {
+    width: $palette-size-m;
+    height: $palette-size-m;
+  }
+}
+
+@include media('>medium') {
+  .palette-display-inner {
+    width: $palette-size-l;
+    height: $palette-size-l;
+  }
 }
 
 .entry {

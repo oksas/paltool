@@ -1,27 +1,31 @@
 import React from 'react';
 import Entry from './Entry';
+// import { useToasts } from 'react-toast-notifications';
 
 function PaletteDisplay({
   palette = [],
   selectedIndices,
-  handleEntrySelect = () => {}
+  handleEntrySelect = () => {},
+  handleMouseLeave = () => {},
+  handleEntryMouseDown = () => {},
+  handleEntryMouseUp = () => {},
+  handleEntryMouseEnter = () => {}
 }) {
-  // on mouse out, just cancel the drag selection mode
-  // for each entry:
-  // on mouse down, set mode to drag, make that potential start
-  // on mouse up, make that , unset drag
+  // const { addToast } = useToasts();
 
   return (
     <div className="palette-display">
       <div className="palette-display-top"></div>
-      <div className="palette-display-inner" onMouseLeave={e => {}}>
+      <div className="palette-display-inner" onMouseLeave={handleMouseLeave}>
         {palette.map((palEntry, index) => (
           <Entry
             color={palEntry}
             key={index}
             index={index}
             isActive={selectedIndices && selectedIndices.has(index)}
-            handleClick={handleEntrySelect}
+            handleMouseDown={handleEntryMouseDown}
+            handleMouseUp={handleEntryMouseUp}
+            handleMouseEnter={handleEntryMouseEnter}
           />
         ))}
       </div>
