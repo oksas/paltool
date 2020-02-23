@@ -1,10 +1,32 @@
+@import 'normalize';
+@import 'variables';
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: $text-color;
+}
+
+button,
+input {
+  font-family: $font-family;
+}
+
+button {
+  border-radius: 2px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  &.primary,
+  &.secondary {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 }
 
 code {
@@ -27,7 +49,8 @@ code {
 
 .top {
   padding: 1rem 2rem;
-  border: 1px dashed royalblue;
+  margin-bottom: 2rem;
+  // border: 1px dashed royalblue;
 
   // header styles, to be replaced later with an SVG
   letter-spacing: 2px;
@@ -35,16 +58,87 @@ code {
   font-weight: 600;
 }
 
-.palette {
+.content {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  //border: 2px dashed blueviolet;
+  width: 52rem;
+  max-width: 98%;
+  margin: 0 auto;
+}
+
+// ================
+// TOOL BAR
+// ================
+.tool-bar {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.tool-bar-button {
+  border-radius: 50%;
+  transition: background 0.2s ease;
+  width: $tool-bar-button-size;
+  height: $tool-bar-button-size;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  color: $text-color-light;
+  background: #ffffff;
+
+  &:hover {
+    background: $tool-bar-button-bg-hover;
+  }
+
+  &:active {
+    background: $tool-bar-button-bg-active;
+  }
+}
+
+.tool-bar-button-fake-label {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#palette-upload {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.tool-bar-button-icon {
+  font-size: $tool-bar-button-icon-size;
+  margin-bottom: 8px;
+  stroke: $text-color-light;
+}
+
+// ================
+// PALETTE DISPLAY
+// ================
+.palette-display {
+  margin-top: 1rem;
+}
+
+.palette-display-top {
+  padding: 1rem 0;
+}
+
+.palette-display-inner {
   display: flex;
   flex-flow: row wrap;
-  width: 512px;
-  height: 512px;
+  width: $palette-size;
+  height: $palette-size;
 }
 
 .entry {
-  width: 32px;
-  height: 32px;
+  width: 6.25%;
+  height: 6.25%;
   position: relative;
 }
 
@@ -74,4 +168,34 @@ code {
 
 .file-handler {
   margin-bottom: 1rem;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease;
+}
+
+.fade-out-down {
+  animation: fadeOutDown 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
 }
