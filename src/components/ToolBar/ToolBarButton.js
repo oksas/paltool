@@ -1,8 +1,12 @@
 import React from 'react';
 
-function ToolBarButton({ children, handleClick }) {
+function ToolBarButton({ children, handleClick, disabled }) {
   return (
-    <button onClick={handleClick} className="tool-bar-button">
+    <button
+      disabled={disabled}
+      onClick={handleClick}
+      className="tool-bar-button"
+    >
       {children}
     </button>
   );

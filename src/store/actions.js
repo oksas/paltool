@@ -1,15 +1,15 @@
-import { PARENT_MESSAGE_SETUP_ERROR } from 'jest-worker/build/types';
-
 // ** ACTION TYPES
 export const UNDO = 'UNDO';
 export const REDO = 'REDO';
 
-export const SET_ERROR = 'SET_ERROR';
-
-export const SET_CURRENT_PAL = 'SET_CURRENT_PAL';
-export const SELECT_INDEX = 'SELECT_INDEX';
-export const DESELECT_INDEX = 'DESELECT_INDEX';
+export const SET_PALETTE = 'SET_PALETTE';
 export const UPDATE_INDEX = 'UPDATE_INDEX';
+
+export const SELECT_INDEX = 'SELECT_INDEX';
+// SELECT_ONLY_INDEX selects _only_ that single index, and is not additive,
+// unlike SELECT_INDEX, which is additive.
+export const SELECT_ONLY_INDEX = 'SELECT_ONLY_INDEX';
+export const DESELECT_INDEX = 'DESELECT_INDEX';
 export const DESELECT_ALL_INDICES = 'DESELECT_ALL_INDICES';
 
 // ** ACTIONS
@@ -21,8 +21,8 @@ export const redo = () => ({
   type: REDO
 });
 
-export const setCurrentPal = pal => ({
-  type: SET_CURRENT_PAL,
+export const setPalette = pal => ({
+  type: SET_PALETTE,
   payload: {
     pal
   }
@@ -30,6 +30,13 @@ export const setCurrentPal = pal => ({
 
 export const selectIndex = index => ({
   type: SELECT_INDEX,
+  payload: {
+    index
+  }
+});
+
+export const selectOnlyIndex = index => ({
+  type: SELECT_ONLY_INDEX,
   payload: {
     index
   }
@@ -51,12 +58,5 @@ export const updateIndex = (index, color) => ({
   payload: {
     index,
     color
-  }
-});
-
-export const setError = err => ({
-  type: PARENT_MESSAGE_SETUP_ERROR,
-  payload: {
-    err
   }
 });

@@ -1,8 +1,8 @@
 import React from 'react';
-import { usePresentSelector } from '../store/util';
+import { useSelector } from 'redux';
 
 const Status = () => {
-  const selectedIndices = usePresentSelector(state => state.selectedIndices);
+  const selectedIndices = useSelector(state => state.selected.selectedIndices);
   const size = selectedIndices.size;
 
   return (

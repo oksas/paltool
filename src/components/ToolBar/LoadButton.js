@@ -4,7 +4,7 @@ import Palette from '../../Palette';
 import { IconContext } from 'react-icons';
 import { FiUpload } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { setCurrentPal } from '../../store/actions';
+import { setPalette } from '../../store/actions';
 
 function LoadButton() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function LoadButton() {
     reader.onload = () => {
       const palArray = new Uint8Array(reader.result);
       const newPal = new Palette().parseFromTypedArray(palArray).getRGB();
-      dispatch(setCurrentPal(newPal));
+      dispatch(setPalette(newPal));
     };
 
     reader.onerror = function() {

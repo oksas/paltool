@@ -74,6 +74,9 @@ code {
 .tool-bar {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
+  width: $palette-size;
+  max-width: 100%;
 }
 
 .tool-bar-button {
@@ -88,21 +91,29 @@ code {
   color: $text-color-light;
   background: #ffffff;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $tool-bar-button-bg-hover;
   }
 
   &:active {
     background: $tool-bar-button-bg-active;
   }
-}
 
-.tool-bar-button-fake-label {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  &:disabled {
+    color: $text-color-disabled;
+    cursor: not-allowed;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: #ffffff;
+    }
+
+    .tool-bar-button-icon {
+      stroke: $text-color-disabled;
+    }
+  }
 }
 
 #palette-upload {

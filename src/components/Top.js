@@ -1,5 +1,4 @@
 import React from 'react';
-// import logo from '../paltool_logo.svg';
 import { ReactComponent as Logo } from '../logo.svg';
 
 function Top() {

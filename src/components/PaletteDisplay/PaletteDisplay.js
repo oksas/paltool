@@ -1,5 +1,4 @@
 import React from 'react';
-import DragSelect from '../DragSelect';
 import Entry from './Entry';
 
 function PaletteDisplay({
@@ -7,11 +6,15 @@ function PaletteDisplay({
   selectedIndices,
   handleEntrySelect = () => {}
 }) {
+  // on mouse out, just cancel the drag selection mode
+  // for each entry:
+  // on mouse down, set mode to drag, make that potential start
+  // on mouse up, make that , unset drag
+
   return (
     <div className="palette-display">
-      <div className="palette-display-top">Current Palette</div>
-      <div className="palette-display-inner">
-        {/* <DragSelect> */}
+      <div className="palette-display-top"></div>
+      <div className="palette-display-inner" onMouseLeave={e => {}}>
         {palette.map((palEntry, index) => (
           <Entry
             color={palEntry}
@@ -21,7 +24,6 @@ function PaletteDisplay({
             handleClick={handleEntrySelect}
           />
         ))}
-        {/* </DragSelect> */}
       </div>
     </div>
   );
