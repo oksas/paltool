@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { selectIndex, deselectIndex } from './store/actions';
 import { usePresentSelector } from './store/util';
 import Top from './components/Top';
-import Entry from './components/Entry';
 import Status from './components/Status';
-import FileHandler from './components/FileHandler';
-import DragSelect from './components/DragSelect';
+import ToolBar from './components/ToolBar/ToolBar';
+import PaletteDisplay from './components/PaletteDisplay';
+import AnimateInOut from './components/AnimateInOut';
 
 function App() {
   const currentPal = usePresentSelector(state => state.currentPal);
@@ -24,25 +24,21 @@ function App() {
   return (
     <div className="app">
       <Top />
-      <div>
-        <FileHandler />
+      <main className="content">
+        <ToolBar />
 
-        <div className="palette">
-          <DragSelect>
-            {currentPal.map((palEntry, index) => (
-              <Entry
-                color={palEntry}
-                key={index}
-                index={index}
-                isActive={selectedIndices.has(index)}
-                handleClick={handleEntrySelect}
-              />
-            ))}
-          </DragSelect>
-        </div>
-
-        <Status />
-      </div>
+        <AnimateInOut
+          shouldShow={currentPal && currentPal.length ? true : false}
+          inClass="fade-in-up"
+          outClass="fade-out-down"
+        >
+          <PaletteDisplay
+            palette={currentPal}
+            handleEntrySelect={handleEntrySelect}
+            selectedIndices={selectedIndices}
+          />
+        </AnimateInOut>
+      </main>
     </div>
   );
 }
