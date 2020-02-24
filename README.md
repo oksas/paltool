@@ -1,5 +1,7 @@
 # paltool
 
+https://paltool.oksas.now.sh/
+
 paltool is a JavaScript-based editor for `.pal` files used in idtech 1 games such as Doom 1, Doom 2, Heretic, and Hexen.
 
 By default, paltool loads the vanilla Doom palette. Other palettes can be imported from your local machine by using the "Load" button in the top toolbar. And similarly, any modifications you make to the currently displayed palette can be saved to your local machine as a `.pal` file with the usage of the "Save" button. Please see the section below for details on the `.pal` file specification, or see [this page on the Doom Wiki](https://doomwiki.org/wiki/PLAYPAL) for more detailed information as it relates to the Doom engine.
