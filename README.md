@@ -1,6 +1,6 @@
 # paltool
 
-https://paltool.oksas.now.sh/
+View paltool live here: https://paltool.now.sh/
 
 paltool is a JavaScript-based editor for `.pal` files used in idtech 1 games such as Doom 1, Doom 2, Heretic, and Hexen.
 
