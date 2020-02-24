@@ -10,8 +10,8 @@ import {
 
 const initialState = {
   isSelecting: false,
-  selectedRangeStart: null,
-  selectedRangeEnd: null
+  selectedRangeStart: 0,
+  selectedRangeEnd: 0
 };
 
 const selectionReducer = (state = initialState, action) => {

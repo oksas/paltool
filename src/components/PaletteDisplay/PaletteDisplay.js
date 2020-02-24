@@ -8,18 +8,13 @@ function PaletteDisplay({
   handleMouseLeave = () => {},
   handleEntryMouseDown = () => {},
   handleEntryMouseUp = () => {},
-  handleEntryMouseEnter = () => {}
+  handleEntryMouseEnter = () => {},
+  handleTouchStart = () => {}
 }) {
-  // const { addToast } = useToasts();
-
   return (
     <div className="palette-display" draggable="false">
       <div className="palette-display-top"></div>
-      <div
-        className="palette-display-inner"
-        onMouseLeave={handleMouseLeave}
-        onTouchMove={e => console.log('touchMove', e.target)}
-      >
+      <div className="palette-display-inner" onMouseLeave={handleMouseLeave}>
         {palette.map((palEntry, index) => (
           <Entry
             color={palEntry}
@@ -29,6 +24,7 @@ function PaletteDisplay({
             handleMouseDown={handleEntryMouseDown}
             handleMouseUp={handleEntryMouseUp}
             handleMouseEnter={handleEntryMouseEnter}
+            handleTouchStart={handleTouchStart}
           />
         ))}
       </div>

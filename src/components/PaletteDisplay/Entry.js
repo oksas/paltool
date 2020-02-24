@@ -6,7 +6,8 @@ const Entry = ({
   isActive,
   handleMouseDown = () => {},
   handleMouseUp = () => {},
-  handleMouseEnter = () => {}
+  handleMouseEnter = () => {},
+  handleTouchStart = () => {}
 }) => {
   return (
     <div
@@ -16,8 +17,8 @@ const Entry = ({
       onMouseDown={e => handleMouseDown(index, e)}
       onMouseUp={e => handleMouseUp(index, e)}
       onMouseEnter={e => handleMouseEnter(index, e)}
-      onTouchStart={e => handleMouseDown(index, e)}
-      onTouchEnd={e => handleMouseUp(index, 3)}
+      onTouchStart={e => handleTouchStart(index, e)}
+      onTouchEnd={e => e.preventDefault()}
     ></div>
   );
 };
