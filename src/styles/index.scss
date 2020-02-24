@@ -88,6 +88,12 @@ code {
   max-width: 100%;
 }
 
+.tool-bar-section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
 @include media('>small') {
   .tool-bar {
     width: $palette-size-m;
@@ -198,12 +204,21 @@ code {
 .palette-display {
   margin-top: 1rem;
   display: flex;
+  flex-flow: column nowrap;
   width: 100%;
   justify-content: center;
+  align-items: center;
 }
 
 .palette-display-top {
+  display: none;
   padding: 1rem 0;
+  width: $palette-size-s;
+}
+
+.palette-display-bottom {
+  padding: 2rem 0;
+  width: $palette-size-s;
 }
 
 .palette-display-inner {
@@ -211,7 +226,6 @@ code {
   flex-flow: row wrap;
   width: $palette-size-s;
   height: $palette-size-s;
-  // width: 100%;
 }
 
 @include media('>small') {
@@ -219,12 +233,20 @@ code {
     width: $palette-size-m;
     height: $palette-size-m;
   }
+
+  .palette-display-bottom {
+    width: $palette-size-m;
+  }
 }
 
 @include media('>medium') {
   .palette-display-inner {
     width: $palette-size-l;
     height: $palette-size-l;
+  }
+
+  .palette-display-bottom {
+    width: $palette-size-l;
   }
 }
 
@@ -249,6 +271,38 @@ code {
   border: 1px solid #000000;
 }
 
+// ================
+// EDITOR
+// ================
+.single-editor-current {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.single-editor-input-container {
+  padding-right: 2rem;
+  input {
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    border: 1px solid $text-color-disabled;
+    width: 4rem;
+    padding: 0.25rem;
+    // Hide the increment/decrement buttons in Firefox
+    -moz-appearance: textfield;
+
+    // Hide the increment/decrement buttons in other browsers
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+// ================
+// OTHER
+// ================
 .status-display {
   border: 1px solid red;
 }
@@ -258,10 +312,9 @@ code {
   width: 8px;
 }
 
-.file-handler {
-  margin-bottom: 1rem;
-}
-
+// ================
+// ANIMATIONS
+// ================
 .fade-in-up {
   animation: fadeInUp 0.4s ease;
 }
@@ -289,5 +342,35 @@ code {
   100% {
     opacity: 0;
     transform: translateY(32px);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.4s ease;
+}
+
+.fade-out-right {
+  animation: fadeOutRight 0.4s ease;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(32px);
   }
 }

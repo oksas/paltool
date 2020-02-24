@@ -4,7 +4,12 @@ import { SET_PALETTE, UPDATE_INDEX } from './actions';
 import paletteReducer from './reducers/paletteReducer';
 import selectionReducer from './reducers/selectionReducer';
 import undoReducer from './reducers/undoReducer';
-import logger from 'redux-logger';
+import editorReducer from './reducers/editorReducer';
+import { createLogger } from 'redux-logger';
+
+const logger = createLogger({
+  collapsed: true
+});
 
 // The undo reducer needs a whitelist of actions to know when to
 // shift the present to the past and add a new present. Without this
@@ -17,7 +22,8 @@ paletteWhitelist.add(UPDATE_INDEX);
 
 const rootReducer = combineReducers({
   palette: undoReducer(paletteReducer, paletteWhitelist),
-  selection: selectionReducer
+  selection: selectionReducer,
+  editor: editorReducer
 });
 
 export default createStore(rootReducer, applyMiddleware(logger));

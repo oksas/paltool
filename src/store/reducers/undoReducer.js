@@ -14,10 +14,13 @@ const undoReducer = (reducer, actionWhitelist) => {
           return state;
         }
 
+        const newFuture = [...state.future];
+        newFuture.unshift(state.present);
+
         return {
           past: state.past.slice(0, state.past.length - 1),
           present: state.past[state.past.length - 1],
-          future: state.future.unshift(state.present)
+          future: newFuture
         };
       }
       case REDO: {

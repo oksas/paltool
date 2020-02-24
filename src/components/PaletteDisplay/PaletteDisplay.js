@@ -1,5 +1,6 @@
 import React from 'react';
 import Entry from './Entry';
+import Editor from '../Editor';
 // import { useToasts } from 'react-toast-notifications';
 
 function PaletteDisplay({
@@ -27,6 +28,9 @@ function PaletteDisplay({
             handleTouchStart={handleTouchStart}
           />
         ))}
+      </div>
+      <div className="palette-display-bottom">
+        <Editor />
       </div>
     </div>
   );

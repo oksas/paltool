@@ -29,7 +29,6 @@ function App() {
   };
 
   const handleEntryMouseUp = (index, e) => {
-    console.log('handling mouse up');
     e.preventDefault();
     dispatch(setIsSelecting(false));
   };
