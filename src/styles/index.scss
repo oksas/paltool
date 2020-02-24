@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $text-color;
+  overscroll-behavior: none;
 }
 
 button,
@@ -39,13 +40,6 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-.app {
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem; */
 }
 
 // ================

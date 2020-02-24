@@ -55,6 +55,7 @@ function LoadButton() {
         id="palette-upload"
         type="file"
         onChange={handleFileUpload}
+        accept=".pal"
       />
       <IconContext.Provider value={{ className: 'tool-bar-button-icon' }}>
         <FiUpload />

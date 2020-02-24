@@ -2,61 +2,42 @@ import {
   SELECT_INDEX,
   SELECT_ONLY_INDEX,
   DESELECT_INDEX,
-  DESELECT_ALL_INDICES
+  DESELECT_ALL_INDICES,
+  SET_IS_SELECTING,
+  SET_SELECTED_START,
+  SET_SELECTED_END
 } from '../actions';
 
-const MODES = {
-  MULTI: 'MULTI',
-  SINGLE: 'SINGLE'
-};
-
-// PALETTE SHOULD HAVE:
-// handleMouseLeave
-// handleEntryMouseDown
-// handleEntryMouseUp
-// handleEntryMouseEnter
-
 const initialState = {
-  mode: MODES.SINGLE,
-  selectedIndices: new Set([])
+  isSelecting: false,
+  selectedRangeStart: null,
+  selectedRangeEnd: null
 };
 
 const selectionReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_INDEX: {
-      const { index } = action.payload;
+    case SET_IS_SELECTING: {
+      const { isSelecting } = action.payload;
 
-      let newSelected = new Set(state.selectedIndices);
-      newSelected.add(index);
       return {
         ...state,
-        selectedIndices: newSelected
+        isSelecting
       };
     }
-    case SELECT_ONLY_INDEX: {
+    case SET_SELECTED_START: {
       const { index } = action.payload;
-
-      let newSelected = new Set();
-      newSelected.add(index);
       return {
         ...state,
-        selectedIndices: newSelected
+        selectedRangeStart: index,
+        selectedRangeEnd: index
       };
     }
-    case DESELECT_INDEX: {
+    case SET_SELECTED_END: {
       const { index } = action.payload;
 
-      let newSelected = new Set(state.selectedIndices);
-      newSelected.delete(index);
       return {
         ...state,
-        selectedIndices: newSelected
-      };
-    }
-    case DESELECT_ALL_INDICES: {
-      return {
-        ...state,
-        selectedIndices: new Set([])
+        selectedRangeEnd: index
       };
     }
     default: {

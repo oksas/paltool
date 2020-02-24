@@ -10,11 +10,14 @@ const Entry = ({
 }) => {
   return (
     <div
+      draggable="false"
       className={`entry ${isActive ? 'is-active' : ''}`}
       style={{ background: `rgb(${color.r}, ${color.g}, ${color.b})` }}
-      onMouseDown={() => handleMouseDown(index)}
-      onMouseUp={() => handleMouseUp(index)}
-      onMouseEnter={() => handleMouseEnter(index)}
+      onMouseDown={e => handleMouseDown(index, e)}
+      onMouseUp={e => handleMouseUp(index, e)}
+      onMouseEnter={e => handleMouseEnter(index, e)}
+      onTouchStart={e => handleMouseDown(index, e)}
+      onTouchEnd={e => handleMouseUp(index, 3)}
     ></div>
   );
 };
