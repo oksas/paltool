@@ -1,68 +1,24 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# paltool
 
-## Available Scripts
+paltool is a JavaScript-based editor for `.pal` files used in idtech 1 games such as Doom 1, Doom 2, Heretic, and Hexen.
 
-In the project directory, you can run:
+By default, paltool loads the vanilla Doom palette. Other palettes can be imported from your local machine by using the "Load" button in the top toolbar. And similarly, any modifications you make to the currently displayed palette can be saved to your local machine as a `.pal` file with the usage of the "Save" button. Please see the section below for details on the `.pal` file specification, or see [this page on the Doom Wiki](https://doomwiki.org/wiki/PLAYPAL) for more detailed information as it relates to the Doom engine.
 
-### `npm start`
+To export palettes from existing `.wad` files for usage in paltool, [SLADE](http://slade.mancubus.net/) is the recommended tool. Currently SLADE's palette editing capabilities far surpass paltool.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## The `.pal` format
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The `.pal` format expected and used by paltool is as follows:
 
-### `npm test`
+- A `.pal` file is 768 bytes in length
+- The value of each byte represents a given palette index's red, green, and blue values, respectively. For example, byte 0 is the red component of the first palette index, byte 1 is the green component, 2 is the blue component; byte 3 is the red component for the second index in the palette, etc. Therefore a palette with 256 colors is represented.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+paltool will show an error notification if the user attempts loading a `.pal` file that does not follow this specification.
 
-### `npm run build`
+## Todos
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Modify the way individual index edits are handled so that edits are only pushed onto the undo/redo stack once the user unfocuses a palette color component input (but still retain the live preview of color edits)
+- Add a gradient mode that allows the user to choose a start and end color to apply over a range of selected indices
+- Add a shift mode that allows the user to modify the HSL values each index in a selected range
+- Add option to load either from a .pal file or from a preselected list of default palettes
+- Add option to save either to a .pal file or to a list of saved palettes in local storage
